@@ -1,0 +1,118 @@
+/* PAGE */
+.admin-page {
+  min-height: 100vh;
+  background: linear-gradient(to right, #fff2cc, #eaffc7);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* HEADER */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+}
+
+.admin-header h2 {
+  margin: 0;
+  font-size: 26px;
+  color: #222;
+}
+
+/* LOGOUT */
+.logout-btn {
+  background: transparent;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  padding: 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+/* CONTAINER */
+.admin-container {
+  padding: 30px 40px;
+}
+
+/* SECTION */
+.admin-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 35px;
+}
+
+.admin-section h4 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* ACTION GRID (LIKE STUDENT MENU) */
+.action-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.three-column {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ACTION CARD */
+.action-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 22px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.action-card h5 {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #222;
+}
+
+.action-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* COUNT TEXT */
+.count-text {
+  font-size: 28px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* HOVER */
+.action-card:hover {
+  border-color: #2ecc71;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* TABLE */
+.table th {
+  background: #f9fafb;
+}
+
+/* DELETE */
+.danger-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.danger-btn:hover {
+  background: #c0392b;
+}
