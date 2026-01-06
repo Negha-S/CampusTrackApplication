@@ -1,0 +1,79 @@
+.login-wrapper {
+  height: 100vh;
+  background: #f6ffe0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-container {
+  width: 80%;
+  height: 80%;
+  background: white;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* LEFT IMAGE */
+.login-left {
+  flex: 1;
+}
+
+.login-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* RIGHT FORM */
+.login-right {
+  width: 35%;
+  padding: 40px;
+  background: #f1ffd8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-right h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-right input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.login-right button {
+  width: 100%;
+  padding: 10px;
+  background: #c4e538;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.register-text {
+  margin-top: 15px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.register-text span {
+  color: #4b7bec;
+  cursor: pointer;
+}
