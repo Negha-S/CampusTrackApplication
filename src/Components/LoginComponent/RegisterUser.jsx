@@ -131,8 +131,8 @@ const RegisterUser = () => {
             onChange={onChangeHandler}
           >
             <option value="">Select Role</option>
-            <option value="Student">Student</option>
-            <option value="Admin">Admin</option>
+            <option value="STUDENT">Student</option>
+            <option value="ADMIN">Admin</option>
           </select>
           {errors.role && <p className="error-text">{errors.role}</p>}
 

@@ -1,17 +1,18 @@
 import axios from "axios";
 
-const MATCH_URL = "http://localhost:9595/lostfound/match";
+const BASE_URL = "http://localhost:9595/lostfound";
 
-export const saveMatchItem=(matchItem)=>{
-    return axios.post(MATCH_URL,matchItem,{
-        withCredentials: true
-    });
+export const getMatchingFoundItems = (lostItemId) => {
+  return axios.get(`${BASE_URL}/found-id/${lostItemId}`, {
+    withCredentials: true
+  });
+};
 
-}
-
-export const getAllMatchItems=()=>{
-    return axios.post(MATCH_URL,{
-        withCredentials: true
-    });
-    
-}
+export const collectItem = (lostItemId, foundItemId) => {
+  return axios.post(`${BASE_URL}/match`, {
+    lostItemId,
+    foundItemId
+  }, {
+    withCredentials: true
+  });
+};

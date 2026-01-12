@@ -16,11 +16,18 @@ const LoginPage = () => {
 
     try {
       const response = await loginUser(username, password);
+
+      // BACKEND RETURNS: STUDENT / ADMIN
       const role = response.data;
 
-      if (role === "Admin") navigate("/AdminMenu");
-      else if (role === "Student") navigate("/StudentMenu");
-      else setError("Invalid user role");
+      // STORE SESSION
+      sessionStorage.setItem("username", username);
+      sessionStorage.setItem("role", role);
+
+      if (role === "ADMIN") navigate("/AdminMenu");
+      else if (role === "STUDENT") navigate("/StudentMenu");
+      else setError("Invalid role");
+
     } catch {
       setError("Invalid username or password");
     }
@@ -29,16 +36,10 @@ const LoginPage = () => {
   return (
     <div className="login-wrapper">
       <div className="login-container">
-
-        {/* LEFT IMAGE SECTION */}
         <div className="login-left">
-          <img
-            src="/images/login-illustration.jpg"
-            alt="Login Illustration"
-          />
+          <img src="/images/login-illustration.jpg" alt="Login" />
         </div>
 
-        {/* RIGHT LOGIN FORM */}
         <div className="login-right">
           <h2>Login</h2>
 
@@ -60,18 +61,9 @@ const LoginPage = () => {
             />
 
             {error && <p className="error">{error}</p>}
-
             <button type="submit">Login</button>
           </form>
-
-          <p className="register-text">
-            Don’t have an account?{" "}
-            <span onClick={() => navigate("/register")}>
-              Register
-            </span>
-          </p>
         </div>
-
       </div>
     </div>
   );
