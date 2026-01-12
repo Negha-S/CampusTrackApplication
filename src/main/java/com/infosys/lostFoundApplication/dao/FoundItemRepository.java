@@ -20,22 +20,30 @@ public interface FoundItemRepository extends JpaRepository<FoundItem, String> {
     @Query("SELECT f FROM FoundItem f WHERE f.username = :username")
     List<FoundItem> getFoundItemsByUsername(@Param("username") String username);
 
-    // ✅ Keyword search (partial match, case-insensitive)
-    @Query("SELECT f FROM FoundItem f WHERE f.status = false AND (" +
-           "LOWER(f.foundItemName) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
-           "LOWER(f.color) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
-           "LOWER(f.brand) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
-           "LOWER(f.location) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
-           "LOWER(f.category) LIKE LOWER(CONCAT('%', :keyword, '%')))")
+    // ✅ Keyword search (JPQL, case-insensitive, FIXED FIELD NAME)
+    @Query("""
+        SELECT f FROM FoundItem f
+        WHERE f.returnedStatus = false AND (
+            LOWER(f.foundItemName) LIKE LOWER(CONCAT('%', :keyword, '%'))
+         OR LOWER(f.color) LIKE LOWER(CONCAT('%', :keyword, '%'))
+         OR LOWER(f.brand) LIKE LOWER(CONCAT('%', :keyword, '%'))
+         OR LOWER(f.location) LIKE LOWER(CONCAT('%', :keyword, '%'))
+         OR LOWER(f.category) LIKE LOWER(CONCAT('%', :keyword, '%'))
+        )
+        """)
     List<FoundItem> searchByKeyword(@Param("keyword") String keyword);
 
-    // ✅ Fuzzy search using SOUNDEX (native query)
-    @Query(value = "SELECT * FROM found_item WHERE status = false AND (" +
-           "SOUNDEX(found_item_name) = SOUNDEX(:keyword) OR " +
-           "SOUNDEX(color) = SOUNDEX(:keyword) OR " +
-           "SOUNDEX(brand) = SOUNDEX(:keyword) OR " +
-           "SOUNDEX(location) = SOUNDEX(:keyword) OR " +
-           "SOUNDEX(category) = SOUNDEX(:keyword))",
-           nativeQuery = true)
+    // ✅ Fuzzy search using SOUNDEX (Native Query, FIXED COLUMN NAME)
+    @Query(value = """
+        SELECT * FROM found_item
+        WHERE returned_status = false AND (
+            SOUNDEX(found_item_name) = SOUNDEX(:keyword)
+         OR SOUNDEX(color) = SOUNDEX(:keyword)
+         OR SOUNDEX(brand) = SOUNDEX(:keyword)
+         OR SOUNDEX(location) = SOUNDEX(:keyword)
+         OR SOUNDEX(category) = SOUNDEX(:keyword)
+        )
+        """,
+        nativeQuery = true)
     List<FoundItem> fuzzySearchBySoundex(@Param("keyword") String keyword);
 }

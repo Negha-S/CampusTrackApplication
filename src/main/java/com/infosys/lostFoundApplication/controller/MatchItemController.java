@@ -1,17 +1,9 @@
 package com.infosys.lostFoundApplication.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.infosys.lostFoundApplication.bean.MatchItem;
-import com.infosys.lostFoundApplication.bean.MatchItemDTO;
+import com.infosys.lostFoundApplication.bean.*;
 import com.infosys.lostFoundApplication.dao.MatchItemDao;
 import com.infosys.lostFoundApplication.service.MatchItemService;
 
@@ -19,22 +11,16 @@ import com.infosys.lostFoundApplication.service.MatchItemService;
 @RequestMapping("/lostfound")
 @CrossOrigin(origins = "http://localhost:3535", allowCredentials = "true")
 public class MatchItemController {
-	@Autowired
-	private MatchItemDao matchItemDao;
-	
-	@Autowired
-	private MatchItemService service;
-	
-	@PostMapping("/match")
-	public void saveMatchItem(@RequestBody MatchItemDTO matchItemDTO) {
-		service.updateLostFoundItems(matchItemDTO);
-		MatchItem matchItem=new MatchItem(matchItemDTO);
-		matchItemDao.saveMatchItem(matchItem);
-	}
-	
-	@GetMapping("/match")
-	public List<MatchItem>getAllMatchItems(){
-		return matchItemDao.getAllMatchItems();
-	}
-	
+
+    @Autowired
+    private MatchItemService service;
+
+    @Autowired
+    private MatchItemDao dao;
+
+    @PostMapping("/match")
+    public void collectItem(@RequestBody MatchItemDTO dto) {
+        service.collectItem(dto);
+        dao.saveMatchItem(new MatchItem(dto));
+    }
 }

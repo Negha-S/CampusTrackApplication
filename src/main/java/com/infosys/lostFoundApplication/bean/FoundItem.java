@@ -1,13 +1,12 @@
 package com.infosys.lostFoundApplication.bean;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "found_item")
 public class FoundItem {
 
     @Id
@@ -19,53 +18,23 @@ public class FoundItem {
     @JsonProperty("foundItemName")
     private String foundItemName;
 
-    @JsonProperty("color")
     private String color;
-
-    @JsonProperty("brand")
     private String brand;
-
-    @JsonProperty("category")
     private String category;
-
-    @JsonProperty("location")
     private String location;
-
-    @Column(name = "username")
-    @JsonProperty("username")
     private String username;
 
     @Column(name = "found_date")
-    @JsonProperty("foundDate")
     private LocalDate foundDate;
 
-    @Column(nullable = false)
-    @JsonProperty("status")
-    private Boolean status = false;
-
-    @Column(name = "returned_status", nullable = false)
-    @JsonProperty("returnedStatus")
+    // false = Not Returned | true = Returned
+    @Column(name = "returned_status")
     private Boolean returnedStatus = false;
 
+    // No-arg constructor (MANDATORY for JPA)
     public FoundItem() {}
 
-    public FoundItem(FoundItemDTO foundItem) {
-        this.foundItemId = foundItem.getFoundItemId();
-        this.foundItemName = foundItem.getFoundItemName();
-        this.color = foundItem.getColor();
-        this.brand = foundItem.getBrand();
-        this.category = foundItem.getCategory();
-        this.location = foundItem.getLocation();
-        this.username = foundItem.getUsername();
-
-        if (foundItem.getFoundDate() != null && !foundItem.getFoundDate().isEmpty()) {
-            this.foundDate = LocalDate.parse(foundItem.getFoundDate());
-        }
-
-        this.status = foundItem.getStatus();
-        this.returnedStatus = foundItem.getReturnedStatus();
-    }
-
+    // Getters & Setters
     public String getFoundItemId() {
         return foundItemId;
     }
@@ -128,14 +97,6 @@ public class FoundItem {
 
     public void setFoundDate(LocalDate foundDate) {
         this.foundDate = foundDate;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 
     public Boolean getReturnedStatus() {

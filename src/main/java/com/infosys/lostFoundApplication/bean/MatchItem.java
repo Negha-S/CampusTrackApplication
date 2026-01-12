@@ -16,23 +16,23 @@ public class MatchItem {
     private String lostUsername;
     private String foundUsername;
 
-    // No-arg constructor (MANDATORY for JPA)
+    // Mandatory no-arg constructor
     public MatchItem() {
         super();
     }
 
-    // Parameterized constructor
-    public MatchItem(MatchItemDTO matchItemDTO) {
-        super();
+    // Constructor using DTO
+    public MatchItem(MatchItemDTO dto) {
         this.matchItemId = new MatchItemId(
-                matchItemDTO.getLostItemId(),
-                matchItemDTO.getFoundItemId()
+                dto.getLostItemId(),
+                dto.getFoundItemId()
         );
-        this.itemName = matchItemDTO.getItemName();
-        this.category = matchItemDTO.getCategory();
-        this.lostUsername = matchItemDTO.getLostUsername();
-        this.foundUsername = matchItemDTO.getFoundUsername();
+        this.itemName = dto.getItemName();
+        this.category = dto.getCategory();
+        this.lostUsername = dto.getLostUsername();
+        this.foundUsername = dto.getFoundUsername();
     }
+
     public MatchItemId getMatchItemId() {
         return matchItemId;
     }

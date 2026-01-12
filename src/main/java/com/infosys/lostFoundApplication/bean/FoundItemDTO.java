@@ -11,19 +11,22 @@ public class FoundItemDTO implements Comparable<FoundItemDTO> {
     private String category;
     private String location;
     private String username;
-    private String foundDate;      // yyyy-MM-dd (String for frontend)
-    private Boolean status;
+
+    // Date as String for frontend (yyyy-MM-dd)
+    private String foundDate;
+
+    // false = Not Returned | true = Returned
     private Boolean returnedStatus;
 
-    // ✅ Default Constructor
+    // ✅ No-arg constructor
     public FoundItemDTO() {
         super();
     }
 
-    // ✅ Full Constructor (used when manually creating DTO)
-    public FoundItemDTO(String foundItemId, String foundItemName, String color, String brand,
-                        String category, String location, String username,
-                        String foundDate, Boolean status, Boolean returnedStatus) {
+    // ✅ Full constructor
+    public FoundItemDTO(String foundItemId, String foundItemName, String color,
+                        String brand, String category, String location,
+                        String username, String foundDate, Boolean returnedStatus) {
         this.foundItemId = foundItemId;
         this.foundItemName = foundItemName;
         this.color = color;
@@ -32,12 +35,12 @@ public class FoundItemDTO implements Comparable<FoundItemDTO> {
         this.location = location;
         this.username = username;
         this.foundDate = foundDate;
-        this.status = status;
         this.returnedStatus = returnedStatus;
     }
 
-    // ✅ Entity → DTO Constructor (FIXED)
+    // ✅ Entity → DTO constructor (FIXED)
     public FoundItemDTO(FoundItem foundItem) {
+
         this.foundItemId = foundItem.getFoundItemId();
         this.foundItemName = foundItem.getFoundItemName();
         this.color = foundItem.getColor();
@@ -46,13 +49,11 @@ public class FoundItemDTO implements Comparable<FoundItemDTO> {
         this.location = foundItem.getLocation();
         this.username = foundItem.getUsername();
 
-        // 🔥 FIX: LocalDate → String
         LocalDate date = foundItem.getFoundDate();
         if (date != null) {
             this.foundDate = date.toString(); // yyyy-MM-dd
         }
 
-        this.status = foundItem.getStatus();
         this.returnedStatus = foundItem.getReturnedStatus();
     }
 
@@ -120,14 +121,6 @@ public class FoundItemDTO implements Comparable<FoundItemDTO> {
 
     public void setFoundDate(String foundDate) {
         this.foundDate = foundDate;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 
     public Boolean getReturnedStatus() {

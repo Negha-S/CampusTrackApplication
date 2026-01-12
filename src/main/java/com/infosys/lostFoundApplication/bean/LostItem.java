@@ -1,11 +1,10 @@
 package com.infosys.lostFoundApplication.bean;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "lost_item")
 public class LostItem {
 
     @Id
@@ -17,46 +16,23 @@ public class LostItem {
     @JsonProperty("lostItemName")
     private String lostItemName;
 
-    @JsonProperty("color")
     private String color;
-
-    @JsonProperty("brand")
     private String brand;
-
-    @JsonProperty("category")
     private String category;
-
-    @JsonProperty("location")
     private String location;
 
-    @Column(name = "username")
-    @JsonProperty("username")
     private String username;
 
     @Column(name = "lost_date")
     @JsonProperty("lostDate")
     private String lostDate;
 
-    @Column(name = "status")
-    @JsonProperty("status")
-    private Boolean status;
+    // false = Not Found | true = Found
+    private Boolean status = false;
 
     public LostItem() {}
 
-    public LostItem(String lostItemId, String lostItemName, String color, String brand,
-                    String category, String location, String username,
-                    String lostDate, Boolean status) {
-        this.lostItemId = lostItemId;
-        this.lostItemName = lostItemName;
-        this.color = color;
-        this.brand = brand;
-        this.category = category;
-        this.location = location;
-        this.username = username;
-        this.lostDate = lostDate;
-        this.status = status;
-    }
-
+    // Getters & Setters
     public String getLostItemId() { return lostItemId; }
     public void setLostItemId(String lostItemId) { this.lostItemId = lostItemId; }
 
